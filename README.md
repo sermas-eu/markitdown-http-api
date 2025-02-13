@@ -6,7 +6,21 @@ An API wrapper built around markitdown
 
 Start the container with `docker compose up`
 
-Test with `curl --form file='@tests/test.pdf' http://localhost:5012/`
+The endpoint `/` will return a plain text result (or an HTTP error if something goes wrong). 
+
+To test use something as following:
+
+```bash
+curl --form file='@tests/test.pdf' http://localhost:5012/
+```
+
+It should return something like this
+
+```
+Test document PDF
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit...
+```
 
 ## License
 
