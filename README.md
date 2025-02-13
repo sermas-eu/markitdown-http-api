@@ -22,6 +22,15 @@ Test document PDF
 Lorem ipsum dolor sit amet, consectetur adipiscing elit...
 ```
 
+## Using OpenAI for OCR
+
+Set environment variables for 
+
+`OPENAI_API_KEY=<your key>`
+
+Optionally set the openai model, defaults to `gpt4-o`
+`OPENAI_MODEL=gpt4-o`
+
 ## License
 
 Copyright 2025+ Spindox Labs

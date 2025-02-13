@@ -18,7 +18,20 @@ app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 64 * 1024 * 1024
 flask_cors.CORS(app)
 
+# from https://github.com/microsoft/markitdown/blob/main/packages/markitdown/tests/test_markitdown.py
 skip_llm = False if os.environ.get("OPENAI_API_KEY") else True
+try:
+    import openai
+except ModuleNotFoundError:
+    skip_llm = True
+
+if skip_llm:
+    md = MarkItDown()
+else:
+    client = openai.OpenAI()
+    md = MarkItDown(
+        llm_client=client, llm_model=os.environ.get("OPENAI_MODEL", "gpt-4o")
+    )
 
 
 @app.before_request
@@ -55,7 +68,6 @@ def markitdown():
 
     content = _get_content_from_request()
 
-    md = MarkItDown()
     result = md.convert_stream(
         io.BytesIO(content.stream.read()), file_extension=".pdf", url=content.filename
     )

@@ -2,6 +2,8 @@ FROM python:3
 
 WORKDIR /app
 
+RUN apt update -q && apt install -y exiftool
+
 RUN python3 -m venv .venv
 
 ADD requirements.txt .

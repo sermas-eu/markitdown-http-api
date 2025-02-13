@@ -1,7 +1,7 @@
 
 services:
   markitdown-api:
-    image: sermas/markitdown-api
+    image: ghcr.io/sermas-eu/markitdown-http-api
     restart: unless-stopped
     build:
       context: .
