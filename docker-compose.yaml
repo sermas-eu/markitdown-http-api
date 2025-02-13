@@ -1,0 +1,23 @@
+networks:
+  sermas_dev:
+    external: true
+
+services:
+  markitdown-api:
+    image: sermas/markitdown-api
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      # - ./markitdown_http_api:/app/markitdown_http_api
+      - ./.env:/app/.env
+    networks:
+      - sermas_dev
+    ports:
+      - 5012:5012
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./markitdown_http_api
+          target: /app/markitdown_http_api

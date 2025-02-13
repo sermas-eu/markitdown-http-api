@@ -1,0 +1,23 @@
+version: "3"
+
+tasks:
+  build:
+    cmds:
+      - docker compose build
+
+  run:
+    cmds:
+      - docker compose up
+
+  dev:
+    cmds:
+      - docker compose up --watch --build
+
+  stop:
+    cmds:
+      - docker compose kill || true
+      - docker compose down
+
+  test:
+    cmds:
+      - curl --form file='@tests/test.pdf' http://localhost:5012/
