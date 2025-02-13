@@ -1,6 +1,3 @@
-networks:
-  sermas_dev:
-    external: true
 
 services:
   markitdown-api:
@@ -12,8 +9,6 @@ services:
     volumes:
       # - ./markitdown_http_api:/app/markitdown_http_api
       - ./.env:/app/.env
-    networks:
-      - sermas_dev
     ports:
       - 5012:5012
     develop:
